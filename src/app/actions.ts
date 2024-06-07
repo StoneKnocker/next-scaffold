@@ -161,6 +161,7 @@ export async function setupWebhook() {
  * Plans database model. It will only sync the 'subscription' variants.
  */
 export async function syncPlans() {
+  console.log("syncPlans start...")
   configureLemonSqueezy();
 
   // Fetch all the variants from the database.
@@ -188,6 +189,8 @@ export async function syncPlans() {
     filter: { storeId: process.env.LEMONSQUEEZY_STORE_ID },
     include: ["variants"],
   });
+
+  console.log(`Syncing ${products.data?.data.length} products...`);
 
   // Loop through all the variants.
   const allVariants = products.data?.included as Variant["data"][] | undefined;
