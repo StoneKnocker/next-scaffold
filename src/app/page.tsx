@@ -3,6 +3,7 @@ import { signIn } from "@/auth";
 import { GithubIcon } from "@/components/icons/github";
 import { LemonSqueezyIcon } from "@/components/icons/lemonsqueezy";
 import { SubmitButton } from "@/components/submit-button";
+import { GoogleIcon } from "@/components/icons/google";
 
 export default function Home() {
   return (
@@ -21,6 +22,22 @@ export default function Home() {
           Squeezy.
         </p>
 
+        <form
+          className="pt-2"
+          action={async () => {
+            "use server";
+            await signIn("google");
+          }}
+        >
+          <SubmitButton
+            before={<GoogleIcon />}
+            className="py-2.5 text-base"
+            shape="pill"
+            variant="primary"
+          >
+            Sign in with Google
+          </SubmitButton>
+        </form>
         <form
           className="pt-2"
           action={async () => {
